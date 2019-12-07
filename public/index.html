@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News Viewer</title>
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        /* body { background-color: #F2F6D0 } */
+        #wrapper {
+          width: 960px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-top: 5%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+        #articles {
+          display: inline-block;
+          overflow: auto;
+          width: 60%;
+          height: 700px;
+        }
+        #notes {
+          float: right;
+          width: 30%;
+        }
+        textarea, input {
+          display: block;
+          width: 100%;
+          background-color: paleturquoise;
+        }
+        input {
+          height: 36px;
+          font-size: 24px;
+        }
+        textarea {
+          height: 200px;
+          font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
-        <h1>Yup yup</h1>
+        <h1>Your News Notes</h1>
         <div id="articles"></div>
         <div id="notes"></div>
         </div>
