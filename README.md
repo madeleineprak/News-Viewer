@@ -9,11 +9,13 @@ This is an app where you can scrape articles from [here]() and add your own pers
 * Cheerio
 * Axios
 
-## How To Use
-
 ## How It Works
+1. Click "Get Scoop" button to scrape from [Hacker News](https://news.ycombinator.com/).
+2. Skim through articles and if you see any you like, you can read more about them in an external link or save them so you can write additional notes to them.
+3. To write personalized notes, click on the "Saved Articles" tab at the top and there you will have the option to add/remove notes and unsave articles.
 
 ### App Demo
+![demo](https://user-images.githubusercontent.com/26778117/70385068-f1959400-193e-11ea-82d2-f26b28a5a1ca.gif)
 
 ## Author(s)
 [Madeleine Prak](https://github.com/madeleineprak/)

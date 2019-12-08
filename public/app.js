@@ -7,6 +7,11 @@
 //     // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary'>Save</a>");
 //     }
 // });
+$(document).on("click", ".navbar-burger", function() {
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+})
 
 $(document).on("click", ".save-article-button", function() {
     var thisId = $(this).attr("data-id");
