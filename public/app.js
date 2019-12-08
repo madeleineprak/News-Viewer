@@ -2,9 +2,23 @@
 $.getJSON("/articles", function(data) {
     for (var i = 0; i < data.length; i++) {
       // Display articles on page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'>Read More</a>" + "</p>");
+    //   $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'>Read More</a>" + "</p><a class='button is-primary'>Save</a>");
+    $("#articles").append("<div class='card'><div class='card-content'><p class='title' data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary save-article-button'data-id='" + data[i]._id + "'>Save</a></div></div></div>");
+    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary'>Save</a>");
     }
 });
+
+$(document).on("click", ".save-article-button", function() {
+    var thisId = $(this).attr("data-id");
+    console.log(thisId);
+    $.ajax({
+        type: "POST",
+        url: "/save/" + thisId
+      })
+      .then(function(data) {
+          console.log(data);
+      })
+})
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
@@ -12,7 +26,7 @@ $(document).on("click", "p", function() {
     $("#notes").empty();
     // Save the id from the p tag
     var thisId = $(this).attr("data-id");
-  
+    
     // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
@@ -67,4 +81,20 @@ $(document).on("click", "#savenote", function() {
     // Also, remove the values entered in the input and textarea for note entry
     $("#titleinput").val("");
     $("#bodyinput").val("");
+});
+
+$(document).on("click", "#deletenote", function() {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+        method: "POST",
+        url: "/deletenote/" + thisId
+    })
+        // With that done
+        .then(function(data) {
+        // Log the response
+        console.log(data);
+        });
 });
