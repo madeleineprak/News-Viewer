@@ -1,12 +1,12 @@
 // Grab the articles
-$.getJSON("/articles", function(data) {
-    for (var i = 0; i < data.length; i++) {
-      // Display articles on page
-    //   $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'>Read More</a>" + "</p><a class='button is-primary'>Save</a>");
-    $("#articles").append("<div class='card'><div class='card-content'><p class='title' data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary save-article-button'data-id='" + data[i]._id + "'>Save</a></div></div></div>");
-    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary'>Save</a>");
-    }
-});
+// $.getJSON("/articles", function(data) {
+//     for (var i = 0; i < data.length; i++) {
+//       // Display articles on page
+//     //   $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'>Read More</a>" + "</p><a class='button is-primary'>Save</a>");
+//     $("#articles").append("<div class='card'><div class='card-content'><p class='title' data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary save-article-button'data-id='" + data[i]._id + "'>Save</a></div></div></div>");
+//     // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p><a class='button is-primary'>Save</a>");
+//     }
+// });
 
 $(document).on("click", ".save-article-button", function() {
     var thisId = $(this).attr("data-id");
@@ -16,12 +16,24 @@ $(document).on("click", ".save-article-button", function() {
         url: "/save/" + thisId
       })
       .then(function(data) {
-          console.log(data);
+        location.reload();
+    })
+})
+
+$(document).on("click", ".unsave-article-button", function() {
+    var thisId = $(this).attr("data-id");
+    console.log(thisId);
+    $.ajax({
+        type: "POST",
+        url: "/delete/" + thisId
       })
+      .then(function(data) {
+        location.reload();
+    })
 })
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", ".notes-button", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag

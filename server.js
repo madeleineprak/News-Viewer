@@ -70,11 +70,23 @@ app.get("/articles", function(req, res) {
       });
 });
 
+app.get("/", function(req, res) {
+    db.Article.find({saved:false})
+    .then(function(result) {
+        var hbsObject = {articles:result};
+        res.render("all-articles", hbsObject);
+    })
+    .catch(function(error) {
+        res.json(error);
+    })
+})
+
 app.get("/saved", function(req, res) {
     db.Article.find({saved:true}) 
         .populate("note")
-        .then(function(dbArticle) {
-            res.json(dbArticle);
+        .then(function(result) {
+            var hbsObject = {articles:result};
+            res.render("saved-articles", hbsObject);
           })
           .catch(function(err) {
             res.json(err);
