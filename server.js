@@ -28,7 +28,7 @@ app.use(express.static("public"));
 
 // Connect to database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds251618.mlab.com:51618/heroku_f3rpn7nj";
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/", function(req, res) {
     db.Article.find({saved:false})
@@ -153,6 +153,6 @@ app.get("/articles/:id", function(req, res) {
   });
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(process.env.PORT || PORT, function() {
     console.log("App running on port " + PORT + "!");
 });
