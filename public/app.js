@@ -102,5 +102,5 @@ $(document).on("click", ".clear-button", function() {
 })
 
 $(document).on("click", ".scrape-button", function() {
-    window.location = "/"
+    window.location = "/scrape"
 })
