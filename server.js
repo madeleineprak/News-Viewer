@@ -28,7 +28,18 @@ app.use(express.static("public"));
 
 // Connect to database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds251618.mlab.com:51618/heroku_f3rpn7nj";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
+
+app.get("/", function(req, res) {
+    db.Article.find({saved:false})
+    .then(function(result) {
+        var hbsObject = {articles:result};
+        res.render("all-articles", hbsObject);
+    })
+    .catch(function(error) {
+        res.json(error);
+    })
+})
 
 app.get("/scrape", function(req, res) {
     axios.get("https://news.ycombinator.com/").then(function(response) {
@@ -68,17 +79,6 @@ app.get("/articles", function(req, res) {
         res.json(err);
       });
 });
-
-app.get("/", function(req, res) {
-    db.Article.find({saved:false})
-    .then(function(result) {
-        var hbsObject = {articles:result};
-        res.render("all-articles", hbsObject);
-    })
-    .catch(function(error) {
-        res.json(error);
-    })
-})
 
 app.get("/saved", function(req, res) {
     db.Article.find({saved:true}) 
