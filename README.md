@@ -1,6 +1,6 @@
 # News-Viewer
 
-This is an app where you can scrape articles from [Hacker News](https://news.ycombinator.com/) and add your own personalized notes to it. Try the deployed version [here](https://fast-inlet-41689.herokuapp.com/).
+This is an app where you can scrape articles from [Hacker News](https://news.ycombinator.com/) and add your own personalized notes to it. Try the deployed version here: [https://fast-inlet-41689.herokuapp.com/](https://fast-inlet-41689.herokuapp.com/).
 
 ## Technologies Used
 * Express
